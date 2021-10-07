@@ -19,13 +19,27 @@ public class Checker
             Environment.Exit(1);
         }
     }
+
     static int Main() 
     {
-        Battery btr = new Battery(25, 70, 0.7f);
+        var btr =InitalizeBattery(25,0,45,70, 20,80,0.07f, 0.8f);
         ExpectTrue(btr.BatteryIsOk());
-        Battery btr1 = new Battery(50, 85, 0.0f);
+
+        var btr1 = InitalizeBattery(50, 0, 45, 85, 20, 80, 0.07f, 0.0f);
         ExpectFalse(btr1.BatteryIsOk());
+        
         Console.WriteLine("All ok");
         return 0;
+    }
+
+    static Battery InitalizeBattery(float temp, float tempMin, float tempMax, float soc,  float socMin, float socMax,float cr,  float crMax) 
+    {
+        Battery btr = new Battery(temp, soc, cr);
+        btr.TemperatureMin = tempMin;
+        btr.TemperatureMax = tempMax;
+        btr.SocMin = socMin;
+        btr.SocMax = socMax;
+        btr.ChargeRateMax = crMax;
+        return btr;
     }
 }
