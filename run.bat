@@ -1,5 +1,5 @@
 pushd "%~dp0"
 
-Battery.exe
+checker.exe
 
 popd
